@@ -1,0 +1,1856 @@
+# encoding: utf-8
+# 2023 R2
+SetScriptVersion(Version="23.2.142")
+system1 = GetSystem(Name="FFF")
+geometry1 = system1.GetContainer(ComponentName="Geometry")
+geometry1.Edit(IsSpaceClaimGeometry=True)
+geometry1.Exit()
+system1.Delete()
+template1 = GetTemplate(TemplateName="Fluid Flow")
+system2 = template1.CreateSystem()
+geometry2 = system2.GetContainer(ComponentName="Geometry")
+geometry2.Edit(IsSpaceClaimGeometry=True)
+geometry2.Exit()
+Save(Overwrite=True)
+meshComponent1 = system2.GetComponent(Name="Mesh")
+meshComponent1.Refresh()
+mesh1 = system2.GetContainer(ComponentName="Mesh")
+mesh1.Edit()
+mesh1.Exit()
+setupComponent1 = system2.GetComponent(Name="Setup")
+setupComponent1.Refresh()
+setup1 = system2.GetContainer(ComponentName="Setup")
+fluentLauncherSettings1 = setup1.GetFluentLauncherSettings()
+fluentLauncherSettings1.SetEntityProperties(Properties=Set(Precision="Double", EnvPath={}, RunParallel=True, NumberOfProcessorsMeshing=2, NumberOfProcessors=2))
+setup1.Edit()
+setup1.SendCommand(Command='(cx-gui-do cx-activate-tab-index "NavigationPane*Frame1(TreeTab)" 0)(cx-gui-do cx-activate-tab-index "NavigationPane*Frame1(TreeTab)" 1)')
+setup1.SendCommand(Command='/file/set-tui-version "23.2"(cx-gui-do cx-activate-item "Key Behavioral Changes*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(%py-exec "preferences.General.KeyBehavioralChangesMessage.set_state(True)")')
+setup1.SendCommand(Command="(cx-use-window-id 51)(cx-use-window-id 51)(cx-set-camera-relative '(-0.145068 0.0615166 -0.0703999) '(0 0 0) '(0.137021 -0.0480953 -0.274054) 0 0)(cx-use-window-id 51)(cx-set-camera-relative '(0.369878 -0.0125681 0.0962274) '(0 0 0) '(0.0340373 -0.0183744 -0.0410075) 0 0)(cx-use-window-id 51)(cx-set-camera-relative '(-0.345406 0.00120188 -0.0690264) '(0 0 0) '(-0.0548228 0.0297099 0.0728606) 0 0)(cx-use-window-id 51)(cx-set-camera-relative '(-0.035505 0.08115 -0.0855811) '(0 0 0) '(0.17453 -0.0939877 -0.157624) 0 0)")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Ribbon*Frame1*Frame2(Domain)*Table1*Table3(Mesh)*PushButton4(Check)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "MenuBar*PopupMenuCheck*Perform Mesh Check")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Models|Energy (Off)"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Models|Energy (Off)"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Models|Energy (Off)"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Models|Energy (Off)"))(cx-gui-do cx-activate-item "NavigationPane*Frame2*Table1*List_Tree2")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Models|Energy (Off)"))(cx-gui-do cx-set-toggle-button2 "Energy*Table1(Energy)*ToggleBox1*CheckButton1(Energy Equation)" #t)(cx-gui-do cx-activate-item "Energy*Table1(Energy)*ToggleBox1*CheckButton1(Energy Equation)")(cx-gui-do cx-activate-item "Energy*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Models|Energy (On)"))(cx-gui-do cx-list-tree-right-click "NavigationPane*Frame2*Table1*List_Tree2" )(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Models|Viscous (SST k-omega)"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Models|Viscous (SST k-omega)"))(cx-gui-do cx-activate-item "NavigationPane*Frame2*Table1*List_Tree2")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Models|Viscous (SST k-omega)"))(cx-gui-do cx-set-toggle-button2 "General*Table1*Table2(Solver)*ButtonBox1(Type)*Density-Based" #t)(cx-gui-do cx-activate-item "General*Table1*Table2(Solver)*ButtonBox1(Type)*Density-Based")(cx-gui-do cx-set-toggle-button2 "General*Table1*Table2(Solver)*ButtonBox1(Type)*Pressure-Based" #t)(cx-gui-do cx-activate-item "General*Table1*Table2(Solver)*ButtonBox1(Type)*Pressure-Based")(cx-gui-do cx-set-toggle-button2 "Viscous Model*Table1*ToggleBox1(Model)*Laminar" #t)(cx-gui-do cx-activate-item "Viscous Model*Table1*ToggleBox1(Model)*Laminar")(cx-gui-do cx-activate-item "Viscous Model*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Models|Viscous (Laminar)"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Materials|Fluid|air"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Materials|Fluid|air"))(cx-gui-do cx-activate-item "NavigationPane*Frame2*Table1*List_Tree2")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Materials|Fluid|air"))(cx-gui-do cx-activate-item "Create/Edit Materials*PanelButtons*PushButton1(Close)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Materials|Solid|aluminum"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Materials|Solid|aluminum"))(cx-gui-do cx-activate-item "NavigationPane*Frame2*Table1*List_Tree2")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Materials|Solid|aluminum"))')
+setup1.SendCommand(Command="(cx-gui-do cx-activate-item \"Create/Edit Materials*Table1*Frame1*Frame2*ButtonBox2*PushButton1(Fluent Database)\")(cx-gui-do cx-set-list-selections \"Fluent Database Materials*Table1*Frame1*Frame3*DropDownList1(Material Type)\" '( 1))(cx-gui-do cx-activate-item \"Fluent Database Materials*Table1*Frame1*Frame3*DropDownList1(Material Type)\")(cx-gui-do cx-set-list-selections \"Fluent Database Materials*Table1*Frame1*List1(Materials)\" '( 5))(cx-gui-do cx-activate-item \"Fluent Database Materials*Table1*Frame1*List1(Materials)\")(cx-gui-do cx-activate-item \"Fluent Database Materials*PanelButtons*PushButton6(Copy)\")(cx-gui-do cx-activate-item \"Fluent Database Materials*PanelButtons*PushButton1(Close)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Create/Edit Materials*PanelButtons*PushButton1(Close)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Materials|Solid|copper"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Cell Zone Conditions|Solid|chip (solid, id=10)"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Cell Zone Conditions|Solid|chip (solid, id=10)"))(cx-gui-do cx-activate-item "NavigationPane*Frame2*Table1*List_Tree2")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-tree-selections \"NavigationPane*Frame2*Table1*List_Tree2\" (list \"Setup|Cell Zone Conditions|Solid|chip (solid, id=10)\"))(cx-gui-do cx-activate-tab-index \"Solid*Frame2*Table3*Frame1\" 0)(cx-gui-do cx-activate-tab-index \"Solid*Frame2*Table3*Frame1\" 1)(cx-gui-do cx-activate-tab-index \"Solid*Frame2*Table3*Frame1\" 0)(cx-gui-do cx-activate-tab-index \"Solid*Frame2*Table3*Frame1\" 2)(cx-gui-do cx-activate-tab-index \"Solid*Frame2*Table3*Frame1\" 0)(cx-gui-do cx-activate-tab-index \"Solid*Frame2*Table3*Frame1\" 3)(cx-gui-do cx-activate-tab-index \"Solid*Frame2*Table3*Frame1\" 0)(cx-gui-do cx-activate-tab-index \"Solid*Frame2*Table3*Frame1\" 4)(cx-gui-do cx-activate-tab-index \"Solid*Frame2*Table3*Frame1\" 0)(cx-gui-do cx-activate-tab-index \"Solid*Frame2*Table3*Frame1\" 5)(cx-gui-do cx-activate-tab-index \"Solid*Frame2*Table3*Frame1\" 0)(cx-gui-do cx-set-list-selections \"Solid*Frame2*Table1*Table1*DropDownList1(Material Name)\" '( 0))(cx-gui-do cx-enable-apply-button \"Solid\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Solid*Frame2*Table1*Table1*DropDownList1(Material Name)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-toggle-button2 "Solid*Frame2*Table2*CheckButton4(Source Terms)" #t)(cx-gui-do cx-activate-item "Solid*Frame2*Table2*CheckButton4(Source Terms)")(cx-gui-do cx-activate-tab-index "Solid*Frame2*Table3*Frame1" 3)')
+setup1.SendCommand(Command="(cx-gui-do cx-activate-item \"Solid*Frame2*Table3*Frame1*Frame4(Source Terms)*Table1*Table1*Table1*PushButton2(Edit)\")(cx-gui-do cx-set-integer-entry \"Energy sources*Table1*IntegerEntry1(Number of Energy sources)\" 1)(cx-gui-do cx-activate-item \"Energy sources*Table1*IntegerEntry1(Number of Energy sources)\")(cx-gui-do cx-set-expression-entry \"Energy sources*Table1*Table2*Table1*ExpressionEntry1(1)\" '(\"0\" . 0))(cx-gui-do cx-set-expression-entry \"Energy sources*Table1*Table2*Table1*ExpressionEntry1(1)\" '(\"10000000\" . 0))(cx-gui-do cx-activate-item \"Energy sources*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Solid*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Solid*PanelButtons*PushButton1(OK)")(cx-gui-do cx-enable-apply-button "Solid")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Solid*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Boundary Conditions|Inlet|inlet (velocity-inlet, id=12)"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Boundary Conditions|Inlet|inlet (velocity-inlet, id=12)"))(cx-gui-do cx-activate-item "NavigationPane*Frame2*Table1*List_Tree2")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-tree-selections \"NavigationPane*Frame2*Table1*List_Tree2\" (list \"Setup|Boundary Conditions|Inlet|inlet (velocity-inlet, id=12)\"))(cx-gui-do cx-activate-tab-index \"Velocity Inlet*Frame2*Frame2\" 0)(cx-gui-do cx-activate-tab-index \"Velocity Inlet*Frame2*Frame2\" 1)(cx-gui-do cx-activate-tab-index \"Velocity Inlet*Frame2*Frame2\" 0)(cx-gui-do cx-activate-tab-index \"Velocity Inlet*Frame2*Frame2\" 2)(cx-gui-do cx-activate-tab-index \"Velocity Inlet*Frame2*Frame2\" 0)(cx-gui-do cx-activate-tab-index \"Velocity Inlet*Frame2*Frame2\" 3)(cx-gui-do cx-activate-tab-index \"Velocity Inlet*Frame2*Frame2\" 0)(cx-gui-do cx-activate-tab-index \"Velocity Inlet*Frame2*Frame2\" 4)(cx-gui-do cx-activate-tab-index \"Velocity Inlet*Frame2*Frame2\" 0)(cx-gui-do cx-activate-tab-index \"Velocity Inlet*Frame2*Frame2\" 5)(cx-gui-do cx-activate-tab-index \"Velocity Inlet*Frame2*Frame2\" 0)(cx-gui-do cx-activate-tab-index \"Velocity Inlet*Frame2*Frame2\" 6)(cx-gui-do cx-activate-tab-index \"Velocity Inlet*Frame2*Frame2\" 0)(cx-gui-do cx-activate-tab-index \"Velocity Inlet*Frame2*Frame2\" 7)(cx-gui-do cx-activate-tab-index \"Velocity Inlet*Frame2*Frame2\" 0)(cx-gui-do cx-activate-tab-index \"Velocity Inlet*Frame2*Frame2\" 8)(cx-gui-do cx-activate-tab-index \"Velocity Inlet*Frame2*Frame2\" 0)(cx-gui-do cx-enable-apply-button \"Velocity Inlet\")(cx-gui-do cx-set-expression-entry \"Velocity Inlet*Frame2*Frame2*Frame1(Momentum)*Table1*Table9*ExpressionEntry1(Velocity Magnitude)\" '(\"1\" . 0))(cx-gui-do cx-activate-item \"Velocity Inlet*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-activate-tab-index \"Velocity Inlet*Frame2*Frame2\" 1)(cx-gui-do cx-enable-apply-button \"Velocity Inlet\")(cx-gui-do cx-set-expression-entry \"Velocity Inlet*Frame2*Frame2*Frame2(Thermal)*Table1*Table1*ExpressionEntry1(Temperature)\" '(\"293\" . 0))(cx-gui-do cx-activate-item \"Velocity Inlet*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Velocity Inlet*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Velocity Inlet*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Boundary Conditions|Outlet|outlet (pressure-outlet, id=13)"))(cx-gui-do cx-list-tree-right-click "NavigationPane*Frame2*Table1*List_Tree2" )')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "MenuBar*TypeSubMenu*outflow")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Boundary Conditions|Wall|botton_wall-chip (wall, id=14)"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Boundary Conditions|Wall|botton_wall-chip (wall, id=14)"))(cx-gui-do cx-activate-item "NavigationPane*Frame2*Table1*List_Tree2")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Boundary Conditions|Wall|botton_wall-chip (wall, id=14)"))(cx-gui-do cx-activate-tab-index "Wall*Frame4" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 1)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 2)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 3)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 4)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 5)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 6)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 7)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 8)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 9)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 10)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4*Frame8(Wall Film)*Frame1*Frame2" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4*Frame8(Wall Film)*Frame1*Frame2" 1)(cx-gui-do cx-activate-tab-index "Wall*Frame4*Frame8(Wall Film)*Frame1*Frame2" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4*Frame8(Wall Film)*Frame1*Frame2" 2)(cx-gui-do cx-activate-tab-index "Wall*Frame4*Frame8(Wall Film)*Frame1*Frame2" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4*Frame8(Wall Film)*Frame1*Frame2" 3)(cx-gui-do cx-activate-tab-index "Wall*Frame4*Frame8(Wall Film)*Frame1*Frame2" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4*Frame8(Wall Film)*Frame1*Frame2" 4)(cx-gui-do cx-activate-tab-index "Wall*Frame4*Frame8(Wall Film)*Frame1*Frame2" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4*Frame8(Wall Film)*Frame1*Frame2" 5)(cx-gui-do cx-activate-tab-index "Wall*Frame4*Frame8(Wall Film)*Frame1*Frame2" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 1)(cx-gui-do cx-activate-item "Wall*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Boundary Conditions|Internal|interior-chip-heatsink (interior, id=3)"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Boundary Conditions|Internal|interior-chip-heatsink (interior, id=3)"))(cx-gui-do cx-list-tree-right-click "NavigationPane*Frame2*Table1*List_Tree2" )')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "MenuBar*PopupMenuTree-interior-chip-heatsink (interior, id=3)*Display")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Boundary Conditions|Internal|interior-chip-heatsink (interior, id=3)"))(cx-gui-do cx-list-tree-right-click "NavigationPane*Frame2*Table1*List_Tree2" )(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Boundary Conditions|Internal|interior-chip-heatsink (interior, id=3)"))(cx-gui-do cx-list-tree-right-click "NavigationPane*Frame2*Table1*List_Tree2" )')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "MenuBar*TypeSubMenu*wall")(cx-gui-do cx-activate-tab-index "Wall*Frame4" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 1)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 2)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 3)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 4)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 5)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 6)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 7)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 8)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 9)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 10)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4*Frame8(Wall Film)*Frame1*Frame2" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4*Frame8(Wall Film)*Frame1*Frame2" 1)(cx-gui-do cx-activate-tab-index "Wall*Frame4*Frame8(Wall Film)*Frame1*Frame2" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4*Frame8(Wall Film)*Frame1*Frame2" 2)(cx-gui-do cx-activate-tab-index "Wall*Frame4*Frame8(Wall Film)*Frame1*Frame2" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4*Frame8(Wall Film)*Frame1*Frame2" 3)(cx-gui-do cx-activate-tab-index "Wall*Frame4*Frame8(Wall Film)*Frame1*Frame2" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4*Frame8(Wall Film)*Frame1*Frame2" 4)(cx-gui-do cx-activate-tab-index "Wall*Frame4*Frame8(Wall Film)*Frame1*Frame2" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4*Frame8(Wall Film)*Frame1*Frame2" 5)(cx-gui-do cx-activate-tab-index "Wall*Frame4*Frame8(Wall Film)*Frame1*Frame2" 0)(cx-gui-do cx-activate-tab-index "Wall*Frame4" 1)')
+setup1.SendCommand(Command='(cx-gui-do cx-enable-apply-button "Wall")(cx-gui-do cx-activate-item "Wall*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list ))(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Methods"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Methods"))(cx-gui-do cx-activate-item "NavigationPane*Frame2*Table1*List_Tree2")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Methods"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Controls"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Controls"))(cx-gui-do cx-activate-item "NavigationPane*Frame2*Table1*List_Tree2")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Controls"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Report Definitions"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Report Definitions"))(cx-gui-do cx-activate-item "NavigationPane*Frame2*Table1*List_Tree2")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Report Definitions"))(cx-gui-do cx-activate-item "Report Definitions*PanelButtons*PushButton1(Close)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Report Definitions"))(cx-gui-do cx-list-tree-right-click "NavigationPane*Frame2*Table1*List_Tree2" )')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "MenuBar*Volume ReportSubMenu*Volume...")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-text-entry "Volume Report Definition*Table1*Table1*TextEntry1(Name)" "chip_temp")(cx-gui-do cx-activate-item "Volume Report Definition*Table1*Table1*TextEntry1(Name)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Volume Report Definition*Table1*Table2*DropDownList1(Report Type)\" '( 5))")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Volume Report Definition*Table1*Table2*DropDownList1(Report Type)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Volume Report Definition*Table1*Table2*DropDownList2(Field Variable)\" '( 3))")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Volume Report Definition*Table1*Table2*DropDownList2(Field Variable)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Volume Report Definition*Table1*Table2*List6(Cell Zones)\" '( 0))(cx-gui-do cx-activate-item \"Volume Report Definition*Table1*Table2*List6(Cell Zones)\")(cx-gui-do cx-set-toggle-button2 \"Volume Report Definition*Table1*Table1*Table5(Create)*CheckButton1(Report File)\" #f)(cx-gui-do cx-activate-item \"Volume Report Definition*Table1*Table1*Table5(Create)*CheckButton1(Report File)\")(cx-gui-do cx-activate-item \"Volume Report Definition*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Report Definitions"))(cx-gui-do cx-list-tree-right-click "NavigationPane*Frame2*Table1*List_Tree2" )')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "MenuBar*Surface ReportSubMenu*Area-Weighted Average...")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-text-entry "Surface Report Definition*Table1*Table1*TextEntry1(Name)" "outflow_temp")(cx-gui-do cx-activate-item "Surface Report Definition*Table1*Table1*TextEntry1(Name)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*DropDownList3(Field Variable)\" '( 3))")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Surface Report Definition*Table1*Table2*DropDownList3(Field Variable)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)\" '( 5))(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)\")(cx-gui-do cx-set-toggle-button2 \"Surface Report Definition*Table1*Table1*Table6(Create)*CheckButton1(Report File)\" #f)(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table1*Table6(Create)*CheckButton1(Report File)\")(cx-gui-do cx-activate-item \"Surface Report Definition*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Initialization"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Initialization"))(cx-gui-do cx-activate-item "NavigationPane*Frame2*Table1*List_Tree2")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Initialization"))')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Solution Initialization*Table1*Frame12*PushButton2(Initialize)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Report Definitions"))(cx-gui-do cx-list-tree-right-click "NavigationPane*Frame2*Table1*List_Tree2" )(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Monitors"))(cx-gui-do cx-list-tree-right-click "NavigationPane*Frame2*Table1*List_Tree2" )(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Monitors"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Monitors"))(cx-gui-do cx-activate-item "NavigationPane*Frame2*Table1*List_Tree2")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Monitors"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Monitors|Residual"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Monitors|Residual"))(cx-gui-do cx-activate-item "NavigationPane*Frame2*Table1*List_Tree2")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Monitors|Residual"))(cx-gui-do cx-activate-item "Residual Monitors*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Run Calculation"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Run Calculation"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Run Calculation"))(cx-gui-do cx-activate-item "NavigationPane*Frame2*Table1*List_Tree2")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Run Calculation"))')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Run Calculation*Table1*Table1*Table1*PushButton1(Check Case)")(cx-gui-do cx-activate-tab-index "Case Check*Table1*Frame1" 0)(cx-gui-do cx-activate-tab-index "Case Check*Table1*Frame1" 1)(cx-gui-do cx-activate-tab-index "Case Check*Table1*Frame1" 0)(cx-gui-do cx-activate-tab-index "Case Check*Table1*Frame1" 2)(cx-gui-do cx-activate-tab-index "Case Check*Table1*Frame1" 0)(cx-gui-do cx-activate-tab-index "Case Check*Table1*Frame1" 3)(cx-gui-do cx-activate-tab-index "Case Check*Table1*Frame1" 0)(cx-gui-do cx-activate-tab-index "Case Check*Table1*Frame1" 4)(cx-gui-do cx-activate-tab-index "Case Check*Table1*Frame1" 0)(cx-gui-do cx-activate-tab-index "Case Check*Table1*Frame1" 1)(cx-gui-do cx-activate-tab-index "Case Check*Table1*Frame1" 2)(cx-gui-do cx-activate-tab-index "Case Check*Table1*Frame1" 3)(cx-gui-do cx-activate-tab-index "Case Check*Table1*Frame1" 4)(cx-gui-do cx-activate-tab-index "Case Check*Table1*Frame1" 0)')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Information*OK")(cx-gui-do cx-set-integer-entry "Run Calculation*Table1*Table3(Parameters)*Table1*Table1*IntegerEntry1(Number of Iterations)" 500)(cx-gui-do cx-activate-item "Run Calculation*Table1*Table3(Parameters)*Table1*Table1*IntegerEntry1(Number of Iterations)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Run Calculation*Table1*Table5(Solution Processing)*Table6*PushButton1(Data File Quantities)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Data File Quantities*Table3*List2(Additional Quantities)\" '( 0))(cx-gui-do cx-activate-item \"Data File Quantities*Table3*List2(Additional Quantities)\")(cx-gui-do cx-set-list-selections \"Data File Quantities*Table3*List2(Additional Quantities)\" '( 0 36))(cx-gui-do cx-activate-item \"Data File Quantities*Table3*List2(Additional Quantities)\")(cx-gui-do cx-set-list-selections \"Data File Quantities*Table3*List2(Additional Quantities)\" '( 0 36 37))(cx-gui-do cx-activate-item \"Data File Quantities*Table3*List2(Additional Quantities)\")(cx-gui-do cx-set-list-selections \"Data File Quantities*Table3*List2(Additional Quantities)\" '( 0 36 37 41))(cx-gui-do cx-activate-item \"Data File Quantities*Table3*List2(Additional Quantities)\")(cx-gui-do cx-set-list-selections \"Data File Quantities*Table3*List2(Additional Quantities)\" '( 0 36 37 41 58))(cx-gui-do cx-activate-item \"Data File Quantities*Table3*List2(Additional Quantities)\")(cx-gui-do cx-set-list-selections \"Data File Quantities*Table3*List2(Additional Quantities)\" '( 0 36 37 41 58 59))(cx-gui-do cx-activate-item \"Data File Quantities*Table3*List2(Additional Quantities)\")(cx-gui-do cx-set-list-selections \"Data File Quantities*Table3*List2(Additional Quantities)\" '( 0 36 37 41 58 59 60))(cx-gui-do cx-activate-item \"Data File Quantities*Table3*List2(Additional Quantities)\")(cx-gui-do cx-activate-item \"Data File Quantities*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Run Calculation*Table1*Table6(Solution Advancement)*Table1*PushButton1(Calculate)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Information*OK")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Ribbon*Frame1*Frame6(Results)*Table1*Table3(Reports)*PushButton2(Fluxes)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Flux Reports*Table2*Table2*List2(Boundaries)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Flux Reports*Table2*Table2*List2(Boundaries)\" '( 0 1 2 3 4 5 6 7 8 9 10 11 12 13))(cx-gui-do cx-activate-item \"Flux Reports*Table2*Table2*List2(Boundaries)\")(cx-gui-do cx-activate-item \"Flux Reports*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-set-toggle-button2 "Flux Reports*Table2*Table1*ToggleBox1(Options)*Total Heat Transfer Rate" #t)(cx-gui-do cx-activate-item "Flux Reports*Table2*Table1*ToggleBox1(Options)*Total Heat Transfer Rate")(cx-gui-do cx-activate-item "Flux Reports*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Flux Reports*PanelButtons*PushButton2(Cancel)")')
+Save(Overwrite=True)
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "MenuBar*FileMenu*Save Project")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "MenuBar*FileMenu*Close Fluent")')
+results1 = system2.GetContainer(ComponentName="Results")
+results1.Edit()
+results1.SendCommand(Command="> autolegend plot=/CONTOUR:HeatSinkTemp, view=VIEW:View 1")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:enclosure
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:heatsink""")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:enclosure
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:heatsink""")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:enclosure
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:heatsink""")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:enclosure
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:heatsink""")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:enclosure
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:heatsink""")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:enclosure
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:heatsink""")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:enclosure
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:heatsink""")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:enclosure
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:heatsink""")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:wall enclosure heatsink, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:chip
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:wall enclosure heatsink, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:enclosure""")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:enclosure
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:heatsink""")
+results1.SendCommand(Command="""CONTOUR:HeatSinkTemp
+Apply Instancing Transform = On
+Clip Contour = Off
+Colour Map = Default Colour Map
+Colour Scale = Linear
+Colour Variable = Temperature
+Colour Variable Boundary Values = Conservative
+Constant Contour Colour = Off
+Contour Range = Global
+Culling Mode = No Culling
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = On
+Font = Sans Serif
+Fringe Fill = On
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Location List = wall enclosure heatsink
+Max = 0.0 [K]
+Min = 0.0 [K]
+Number of Contours = 100
+Show Numbers = Off
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Text Colour = 0, 0, 0
+Text Colour Mode = Default
+Text Height = 0.024
+Transparency = 0.0
+Use Face Values = Off
+Value List = 0 [K],1 [K]
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.SendCommand(Command="""# Sending visibility action from ViewUtilities
+>show /CONTOUR:HeatSinkTemp, view=/VIEW:View 1""")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:wall enclosure heatsink, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:chip
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:wall enclosure heatsink, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:enclosure""")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:wall enclosure heatsink, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:chip
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:wall enclosure heatsink, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:enclosure""")
+results1.SendCommand(Command="""CONTOUR:HeatSinkTemp
+Apply Instancing Transform = On
+Clip Contour = Off
+Colour Map = Default Colour Map
+Colour Scale = Linear
+Colour Variable = Temperature
+Colour Variable Boundary Values = Conservative
+Constant Contour Colour = Off
+Contour Range = Local
+Culling Mode = No Culling
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = On
+Font = Sans Serif
+Fringe Fill = On
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Location List = wall enclosure heatsink
+Max = 0.0 [K]
+Min = 0.0 [K]
+Number of Contours = 100
+Show Numbers = Off
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Text Colour = 0, 0, 0
+Text Colour Mode = Default
+Text Height = 0.024
+Transparency = 0.0
+Use Face Values = Off
+Value List = 0 [K],1 [K]
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.SendCommand(Command="""VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.025, 0.014, -0.007
+    Scale = 40.8804
+    Pan = 0, 0
+    Rotation Quaternion = 0.130007, 0.40443, 0.104271, 0.899259
+    
+  END
+
+END
+
+> update
+> autolegend plot=/DEFAULT LEGEND:Default Legend View 1, view=VIEW:View 1""")
+results1.SendCommand(Command="""DEFAULT LEGEND:Default Legend View 1
+Colour = 0, 0, 0
+Font = Sans Serif
+Legend Aspect = 0.07
+Legend Format = %6.3f
+Legend Orientation = Vertical
+Legend Position = 0.02 , 0.15 
+Legend Size = 0.6
+Legend Ticks = 5
+Legend Title = Legend
+Legend Title Mode = Variable and Location
+Legend X Justification = Left
+Legend Y Justification = Top
+Show Legend Units = On
+Text Colour Mode = Default
+Text Height = 0.024
+Text Rotation = 0
+END""")
+results1.SendCommand(Command="""VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.025, 0.014, -0.007
+    Scale = 35.251
+    Pan = 0, 0
+    Rotation Quaternion = 0.117245, 0.455829, 0.0755562, 0.879075
+    
+  END
+
+END
+
+> update
+> autolegend plot=/CONTOUR:HeatSinkTemp, view=VIEW:View 1""")
+results1.SendCommand(Command="""CONTOUR:HeatSinkTemp
+Apply Instancing Transform = On
+Clip Contour = Off
+Colour Map = Default Colour Map
+Colour Scale = Linear
+Colour Variable = Temperature
+Colour Variable Boundary Values = Conservative
+Constant Contour Colour = Off
+Contour Range = Local
+Culling Mode = No Culling
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = On
+Font = Sans Serif
+Fringe Fill = On
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Location List = wall enclosure heatsink
+Max = 0.0 [K]
+Min = 0.0 [K]
+Number of Contours = 50
+Show Numbers = Off
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Text Colour = 0, 0, 0
+Text Colour Mode = Default
+Text Height = 0.024
+Transparency = 0.0
+Use Face Values = Off
+Value List = 0 [K],1 [K]
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.SendCommand(Command="""CONTOUR:HeatSinkTemp
+Apply Instancing Transform = On
+Clip Contour = Off
+Colour Map = Default Colour Map
+Colour Scale = Linear
+Colour Variable = Temperature
+Colour Variable Boundary Values = Conservative
+Constant Contour Colour = Off
+Contour Range = Local
+Culling Mode = No Culling
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = On
+Font = Sans Serif
+Fringe Fill = On
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Location List = wall enclosure heatsink
+Max = 0.0 [K]
+Min = 0.0 [K]
+Number of Contours = 50
+Show Numbers = Off
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Text Colour = 0, 0, 0
+Text Colour Mode = Default
+Text Height = 0.024
+Transparency = 0.0
+Use Face Values = Off
+Value List = 0 [K],1 [K]
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.SendCommand(Command="""VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.025, 0.014, -0.007
+    Scale = 35.251
+    Pan = 0, 0
+    Rotation Quaternion = 0.183191, 0.359461, 0.130486, 0.905654
+    
+  END
+
+END
+
+> update
+CONTOUR:HeatSinkTemp
+Apply Instancing Transform = On
+Clip Contour = Off
+Colour Map = Default Colour Map
+Colour Scale = Linear
+Colour Variable = Temperature
+Colour Variable Boundary Values = Conservative
+Constant Contour Colour = Off
+Contour Range = Local
+Culling Mode = No Culling
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = On
+Font = Sans Serif
+Fringe Fill = On
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Location List = wall enclosure heatsink
+Max = 0.0 [K]
+Min = 0.0 [K]
+Number of Contours = 100
+Show Numbers = Off
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Text Colour = 0, 0, 0
+Text Colour Mode = Default
+Text Height = 0.024
+Transparency = 0.0
+Use Face Values = Off
+Value List = 0 [K],1 [K]
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.SendCommand(Command="""VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.025, 0.014, -0.007
+    Scale = 33.5524
+    Pan = 0, 0
+    Rotation Quaternion = 0.137436, 0.366811, 0.0913176, 0.915549
+    
+  END
+
+END
+
+> update
+> autolegend plot=/PLANE:YZplane, view=VIEW:View 1""")
+results1.SendCommand(Command="""PLANE:YZplane
+Apply Instancing Transform = On
+Apply Texture = Off
+Blend Texture = On
+Bound Radius = 0.5 [m]
+Colour = 0.75, 0.75, 0.75
+Colour Map = Default Colour Map
+Colour Mode = Constant
+Colour Scale = Linear
+Colour Variable = Pressure
+Colour Variable Boundary Values = Conservative
+Culling Mode = No Culling
+Direction 1 Bound = 1.0 [m]
+Direction 1 Orientation = 0 [degree]
+Direction 1 Points = 10
+Direction 2 Bound = 1.0 [m]
+Direction 2 Points = 10
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = Off
+Draw Faces = On
+Draw Lines = Off
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Invert Plane Bound = Off
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Max = 0.0
+Min = 0.0
+Normal = 1 , 0 , 0 
+Number of Contours = 11
+Option = YZ Plane
+Plane Bound = None
+Plane Type = Slice
+Point = 0 [m], 0 [m], 0 [m]
+Point 1 = 0 [m], 0 [m], 0 [m]
+Point 2 = 1 [m], 0 [m], 0 [m]
+Point 3 = 0 [m], 1 [m], 0 [m]
+Range = Global
+Render Edge Angle = 0 [degree]
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Texture Angle = 0
+Texture Direction = 0 , 1 , 0 
+Texture File =  
+Texture Material = Metal
+Texture Position = 0 , 0 
+Texture Scale = 1
+Texture Type = Predefined
+Tile Texture = Off
+Transform Texture = Off
+Transparency = 0.0
+X = 0.005 [m]
+Y = 0.0 [m]
+Z = 0.0 [m]
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.SendCommand(Command="""# Sending visibility action from ViewUtilities
+>show /PLANE:YZplane, view=/VIEW:View 1""")
+results1.SendCommand(Command="""PLANE:YZplane
+Apply Instancing Transform = On
+Apply Texture = Off
+Blend Texture = On
+Bound Radius = 0.5 [m]
+Colour = 0.75, 0.75, 0.75
+Colour Map = Default Colour Map
+Colour Mode = Constant
+Colour Scale = Linear
+Colour Variable = Pressure
+Colour Variable Boundary Values = Conservative
+Culling Mode = No Culling
+Direction 1 Bound = 1.0 [m]
+Direction 1 Orientation = 0 [degree]
+Direction 1 Points = 10
+Direction 2 Bound = 1.0 [m]
+Direction 2 Points = 10
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = Off
+Draw Faces = On
+Draw Lines = Off
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Invert Plane Bound = Off
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Max = 0.0 [Pa]
+Min = 0.0 [Pa]
+Normal = 1 , 0 , 0 
+Number of Contours = 11
+Option = XY Plane
+Plane Bound = None
+Plane Type = Slice
+Point = 0 [m], 0 [m], 0 [m]
+Point 1 = 0 [m], 0 [m], 0 [m]
+Point 2 = 1 [m], 0 [m], 0 [m]
+Point 3 = 0 [m], 1 [m], 0 [m]
+Range = Global
+Render Edge Angle = 0 [degree]
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Texture Angle = 0
+Texture Direction = 0 , 1 , 0 
+Texture File =  
+Texture Material = Metal
+Texture Position = 0 , 0 
+Texture Scale = 1
+Texture Type = Predefined
+Tile Texture = Off
+Transform Texture = Off
+Transparency = 0.0
+X = 0.005 [m]
+Y = 0.0 [m]
+Z = 0.005 [m]
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.SendCommand(Command="""VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.025, 0.014, -0.007
+    Scale = 33.5524
+    Pan = 0, 0
+    Rotation Quaternion = 0.122284, 0.434815, 0.0508095, 0.890736
+    
+  END
+
+END
+
+> update
+PLANE:YZplane
+Apply Instancing Transform = On
+Apply Texture = Off
+Blend Texture = On
+Bound Radius = 0.5 [m]
+Colour = 0.75, 0.75, 0.75
+Colour Map = Default Colour Map
+Colour Mode = Constant
+Colour Scale = Linear
+Colour Variable = Pressure
+Colour Variable Boundary Values = Conservative
+Culling Mode = No Culling
+Direction 1 Bound = 1.0 [m]
+Direction 1 Orientation = 0 [degree]
+Direction 1 Points = 10
+Direction 2 Bound = 1.0 [m]
+Direction 2 Points = 10
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = Off
+Draw Faces = On
+Draw Lines = Off
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Invert Plane Bound = Off
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Max = 0.0 [Pa]
+Min = 0.0 [Pa]
+Normal = 1 , 0 , 0 
+Number of Contours = 11
+Option = XY Plane
+Plane Bound = None
+Plane Type = Slice
+Point = 0 [m], 0 [m], 0 [m]
+Point 1 = 0 [m], 0 [m], 0 [m]
+Point 2 = 1 [m], 0 [m], 0 [m]
+Point 3 = 0 [m], 1 [m], 0 [m]
+Range = Global
+Render Edge Angle = 0 [degree]
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Texture Angle = 0
+Texture Direction = 0 , 1 , 0 
+Texture File =  
+Texture Material = Metal
+Texture Position = 0 , 0 
+Texture Scale = 1
+Texture Type = Predefined
+Tile Texture = Off
+Transform Texture = Off
+Transparency = 0.0
+X = 0.005 [m]
+Y = 0.0 [m]
+Z = 0 [m]
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.SendCommand(Command="""VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.025, 0.014, -0.007
+    Scale = 33.5524
+    Pan = 0, 0
+    Rotation Quaternion = 0.122782, 0.679057, 0.00648791, 0.723722
+    
+  END
+
+END
+
+> update
+PLANE:YZplane
+Apply Instancing Transform = On
+Apply Texture = Off
+Blend Texture = On
+Bound Radius = 0.5 [m]
+Colour = 0.75, 0.75, 0.75
+Colour Map = Default Colour Map
+Colour Mode = Constant
+Colour Scale = Linear
+Colour Variable = Pressure
+Colour Variable Boundary Values = Conservative
+Culling Mode = No Culling
+Direction 1 Bound = 1.0 [m]
+Direction 1 Orientation = 0 [degree]
+Direction 1 Points = 10
+Direction 2 Bound = 1.0 [m]
+Direction 2 Points = 10
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = Off
+Draw Faces = On
+Draw Lines = Off
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Invert Plane Bound = Off
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Max = 0.0 [Pa]
+Min = 0.0 [Pa]
+Normal = 1 , 0 , 0 
+Number of Contours = 11
+Option = XY Plane
+Plane Bound = None
+Plane Type = Slice
+Point = 0 [m], 0 [m], 0 [m]
+Point 1 = 0 [m], 0 [m], 0 [m]
+Point 2 = 1 [m], 0 [m], 0 [m]
+Point 3 = 0 [m], 1 [m], 0 [m]
+Range = Global
+Render Edge Angle = 0 [degree]
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Texture Angle = 0
+Texture Direction = 0 , 1 , 0 
+Texture File =  
+Texture Material = Metal
+Texture Position = 0 , 0 
+Texture Scale = 1
+Texture Type = Predefined
+Tile Texture = Off
+Transform Texture = Off
+Transparency = 0.0
+X = 0.005 [m]
+Y = 0.0 [m]
+Z = -0.005 [m]
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.SendCommand(Command="""VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.025, 0.014, -0.007
+    Scale = 33.5524
+    Pan = 0, 0
+    Rotation Quaternion = 0.132466, 0.633803, 0.0251226, 0.76166
+    
+  END
+
+END
+
+> update
+PLANE:YZplane
+Apply Instancing Transform = On
+Apply Texture = Off
+Blend Texture = On
+Bound Radius = 0.5 [m]
+Colour = 0.75, 0.75, 0.75
+Colour Map = Default Colour Map
+Colour Mode = Constant
+Colour Scale = Linear
+Colour Variable = Pressure
+Colour Variable Boundary Values = Conservative
+Culling Mode = No Culling
+Direction 1 Bound = 1.0 [m]
+Direction 1 Orientation = 0 [degree]
+Direction 1 Points = 10
+Direction 2 Bound = 1.0 [m]
+Direction 2 Points = 10
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = Off
+Draw Faces = On
+Draw Lines = Off
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Invert Plane Bound = Off
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Max = 0.0 [Pa]
+Min = 0.0 [Pa]
+Normal = 1 , 0 , 0 
+Number of Contours = 11
+Option = XY Plane
+Plane Bound = None
+Plane Type = Slice
+Point = 0 [m], 0 [m], 0 [m]
+Point 1 = 0 [m], 0 [m], 0 [m]
+Point 2 = 1 [m], 0 [m], 0 [m]
+Point 3 = 0 [m], 1 [m], 0 [m]
+Range = Global
+Render Edge Angle = 0 [degree]
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Texture Angle = 0
+Texture Direction = 0 , 1 , 0 
+Texture File =  
+Texture Material = Metal
+Texture Position = 0 , 0 
+Texture Scale = 1
+Texture Type = Predefined
+Tile Texture = Off
+Transform Texture = Off
+Transparency = 0.0
+X = 0.005 [m]
+Y = 0.0 [m]
+Z = -0.05 [m]
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.SendCommand(Command="""PLANE:YZplane
+Apply Instancing Transform = On
+Apply Texture = Off
+Blend Texture = On
+Bound Radius = 0.5 [m]
+Colour = 0.75, 0.75, 0.75
+Colour Map = Default Colour Map
+Colour Mode = Constant
+Colour Scale = Linear
+Colour Variable = Pressure
+Colour Variable Boundary Values = Conservative
+Culling Mode = No Culling
+Direction 1 Bound = 1.0 [m]
+Direction 1 Orientation = 0 [degree]
+Direction 1 Points = 10
+Direction 2 Bound = 1.0 [m]
+Direction 2 Points = 10
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = Off
+Draw Faces = On
+Draw Lines = Off
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Invert Plane Bound = Off
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Max = 0.0 [Pa]
+Min = 0.0 [Pa]
+Normal = 1 , 0 , 0 
+Number of Contours = 11
+Option = XY Plane
+Plane Bound = None
+Plane Type = Slice
+Point = 0 [m], 0 [m], 0 [m]
+Point 1 = 0 [m], 0 [m], 0 [m]
+Point 2 = 1 [m], 0 [m], 0 [m]
+Point 3 = 0 [m], 1 [m], 0 [m]
+Range = Global
+Render Edge Angle = 0 [degree]
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Texture Angle = 0
+Texture Direction = 0 , 1 , 0 
+Texture File =  
+Texture Material = Metal
+Texture Position = 0 , 0 
+Texture Scale = 1
+Texture Type = Predefined
+Tile Texture = Off
+Transform Texture = Off
+Transparency = 0.0
+X = 0.005 [m]
+Y = 0.0 [m]
+Z = -0.015 [m]
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.SendCommand(Command="""PLANE:YZplane
+Apply Instancing Transform = On
+Apply Texture = Off
+Blend Texture = On
+Bound Radius = 0.5 [m]
+Colour = 0.75, 0.75, 0.75
+Colour Map = Default Colour Map
+Colour Mode = Constant
+Colour Scale = Linear
+Colour Variable = Pressure
+Colour Variable Boundary Values = Conservative
+Culling Mode = No Culling
+Direction 1 Bound = 1.0 [m]
+Direction 1 Orientation = 0 [degree]
+Direction 1 Points = 10
+Direction 2 Bound = 1.0 [m]
+Direction 2 Points = 10
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = Off
+Draw Faces = On
+Draw Lines = Off
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Invert Plane Bound = Off
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Max = 0.0 [Pa]
+Min = 0.0 [Pa]
+Normal = 1 , 0 , 0 
+Number of Contours = 11
+Option = XY Plane
+Plane Bound = None
+Plane Type = Slice
+Point = 0 [m], 0 [m], 0 [m]
+Point 1 = 0 [m], 0 [m], 0 [m]
+Point 2 = 1 [m], 0 [m], 0 [m]
+Point 3 = 0 [m], 1 [m], 0 [m]
+Range = Global
+Render Edge Angle = 0 [degree]
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Texture Angle = 0
+Texture Direction = 0 , 1 , 0 
+Texture File =  
+Texture Material = Metal
+Texture Position = 0 , 0 
+Texture Scale = 1
+Texture Type = Predefined
+Tile Texture = Off
+Transform Texture = Off
+Transparency = 0.0
+X = 0.005 [m]
+Y = 0.0 [m]
+Z = -0.0015 [m]
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.SendCommand(Command="""VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.025, 0.014, -0.007
+    Scale = 33.5524
+    Pan = 0, 0
+    Rotation Quaternion = 0.166993, 0.661374, 0.0598932, 0.72878
+    
+  END
+
+END
+
+> update
+PLANE:YZplane
+Apply Instancing Transform = On
+Apply Texture = Off
+Blend Texture = On
+Bound Radius = 0.5 [m]
+Colour = 0.75, 0.75, 0.75
+Colour Map = Default Colour Map
+Colour Mode = Constant
+Colour Scale = Linear
+Colour Variable = Pressure
+Colour Variable Boundary Values = Conservative
+Culling Mode = No Culling
+Direction 1 Bound = 1.0 [m]
+Direction 1 Orientation = 0 [degree]
+Direction 1 Points = 10
+Direction 2 Bound = 1.0 [m]
+Direction 2 Points = 10
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = Off
+Draw Faces = On
+Draw Lines = Off
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Invert Plane Bound = Off
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Max = 0.0 [Pa]
+Min = 0.0 [Pa]
+Normal = 1 , 0 , 0 
+Number of Contours = 11
+Option = XY Plane
+Plane Bound = None
+Plane Type = Slice
+Point = 0 [m], 0 [m], 0 [m]
+Point 1 = 0 [m], 0 [m], 0 [m]
+Point 2 = 1 [m], 0 [m], 0 [m]
+Point 3 = 0 [m], 1 [m], 0 [m]
+Range = Global
+Render Edge Angle = 0 [degree]
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Texture Angle = 0
+Texture Direction = 0 , 1 , 0 
+Texture File =  
+Texture Material = Metal
+Texture Position = 0 , 0 
+Texture Scale = 1
+Texture Type = Predefined
+Tile Texture = Off
+Transform Texture = Off
+Transparency = 0.0
+X = 0.005 [m]
+Y = 0.0 [m]
+Z = 0.005 [m]
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.SendCommand(Command="""PLANE:YZplane
+Apply Instancing Transform = On
+Apply Texture = Off
+Blend Texture = On
+Bound Radius = 0.5 [m]
+Colour = 0.75, 0.75, 0.75
+Colour Map = Default Colour Map
+Colour Mode = Constant
+Colour Scale = Linear
+Colour Variable = Pressure
+Colour Variable Boundary Values = Conservative
+Culling Mode = No Culling
+Direction 1 Bound = 1.0 [m]
+Direction 1 Orientation = 0 [degree]
+Direction 1 Points = 10
+Direction 2 Bound = 1.0 [m]
+Direction 2 Points = 10
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = Off
+Draw Faces = On
+Draw Lines = Off
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Invert Plane Bound = Off
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Max = 0.0 [Pa]
+Min = 0.0 [Pa]
+Normal = 1 , 0 , 0 
+Number of Contours = 11
+Option = XY Plane
+Plane Bound = None
+Plane Type = Slice
+Point = 0 [m], 0 [m], 0 [m]
+Point 1 = 0 [m], 0 [m], 0 [m]
+Point 2 = 1 [m], 0 [m], 0 [m]
+Point 3 = 0 [m], 1 [m], 0 [m]
+Range = Global
+Render Edge Angle = 0 [degree]
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Texture Angle = 0
+Texture Direction = 0 , 1 , 0 
+Texture File =  
+Texture Material = Metal
+Texture Position = 0 , 0 
+Texture Scale = 1
+Texture Type = Predefined
+Tile Texture = Off
+Transform Texture = Off
+Transparency = 0.0
+X = 0.005 [m]
+Y = 0.0 [m]
+Z = 0 [m]
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.SendCommand(Command="""PLANE:YZplane
+Apply Instancing Transform = On
+Apply Texture = Off
+Blend Texture = On
+Bound Radius = 0.5 [m]
+Colour = 0.75, 0.75, 0.75
+Colour Map = Default Colour Map
+Colour Mode = Constant
+Colour Scale = Linear
+Colour Variable = Pressure
+Colour Variable Boundary Values = Conservative
+Culling Mode = No Culling
+Direction 1 Bound = 1.0 [m]
+Direction 1 Orientation = 0 [degree]
+Direction 1 Points = 10
+Direction 2 Bound = 1.0 [m]
+Direction 2 Points = 10
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = Off
+Draw Faces = On
+Draw Lines = Off
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Invert Plane Bound = Off
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Max = 0.0 [Pa]
+Min = 0.0 [Pa]
+Normal = 1 , 0 , 0 
+Number of Contours = 11
+Option = XY Plane
+Plane Bound = None
+Plane Type = Slice
+Point = 0 [m], 0 [m], 0 [m]
+Point 1 = 0 [m], 0 [m], 0 [m]
+Point 2 = 1 [m], 0 [m], 0 [m]
+Point 3 = 0 [m], 1 [m], 0 [m]
+Range = Global
+Render Edge Angle = 0 [degree]
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Texture Angle = 0
+Texture Direction = 0 , 1 , 0 
+Texture File =  
+Texture Material = Metal
+Texture Position = 0 , 0 
+Texture Scale = 1
+Texture Type = Predefined
+Tile Texture = Off
+Transform Texture = Off
+Transparency = 0.0
+X = 0.005 [m]
+Y = 0.0 [m]
+Z = -0.02 [m]
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.SendCommand(Command="""PLANE:YZplane
+Apply Instancing Transform = On
+Apply Texture = Off
+Blend Texture = On
+Bound Radius = 0.5 [m]
+Colour = 0.75, 0.75, 0.75
+Colour Map = Default Colour Map
+Colour Mode = Constant
+Colour Scale = Linear
+Colour Variable = Pressure
+Colour Variable Boundary Values = Conservative
+Culling Mode = No Culling
+Direction 1 Bound = 1.0 [m]
+Direction 1 Orientation = 0 [degree]
+Direction 1 Points = 10
+Direction 2 Bound = 1.0 [m]
+Direction 2 Points = 10
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = Off
+Draw Faces = On
+Draw Lines = Off
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Invert Plane Bound = Off
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Max = 0.0 [Pa]
+Min = 0.0 [Pa]
+Normal = 1 , 0 , 0 
+Number of Contours = 11
+Option = XY Plane
+Plane Bound = None
+Plane Type = Slice
+Point = 0 [m], 0 [m], 0 [m]
+Point 1 = 0 [m], 0 [m], 0 [m]
+Point 2 = 1 [m], 0 [m], 0 [m]
+Point 3 = 0 [m], 1 [m], 0 [m]
+Range = Global
+Render Edge Angle = 0 [degree]
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Texture Angle = 0
+Texture Direction = 0 , 1 , 0 
+Texture File =  
+Texture Material = Metal
+Texture Position = 0 , 0 
+Texture Scale = 1
+Texture Type = Predefined
+Tile Texture = Off
+Transform Texture = Off
+Transparency = 0.0
+X = 0.005 [m]
+Y = 0.0 [m]
+Z = -0.0012 [m]
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.SendCommand(Command="""PLANE:YZplane
+Apply Instancing Transform = On
+Apply Texture = Off
+Blend Texture = On
+Bound Radius = 0.5 [m]
+Colour = 0.75, 0.75, 0.75
+Colour Map = Default Colour Map
+Colour Mode = Constant
+Colour Scale = Linear
+Colour Variable = Pressure
+Colour Variable Boundary Values = Conservative
+Culling Mode = No Culling
+Direction 1 Bound = 1.0 [m]
+Direction 1 Orientation = 0 [degree]
+Direction 1 Points = 10
+Direction 2 Bound = 1.0 [m]
+Direction 2 Points = 10
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = Off
+Draw Faces = On
+Draw Lines = Off
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Invert Plane Bound = Off
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Max = 0.0 [Pa]
+Min = 0.0 [Pa]
+Normal = 1 , 0 , 0 
+Number of Contours = 11
+Option = XY Plane
+Plane Bound = None
+Plane Type = Slice
+Point = 0 [m], 0 [m], 0 [m]
+Point 1 = 0 [m], 0 [m], 0 [m]
+Point 2 = 1 [m], 0 [m], 0 [m]
+Point 3 = 0 [m], 1 [m], 0 [m]
+Range = Global
+Render Edge Angle = 0 [degree]
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Texture Angle = 0
+Texture Direction = 0 , 1 , 0 
+Texture File =  
+Texture Material = Metal
+Texture Position = 0 , 0 
+Texture Scale = 1
+Texture Type = Predefined
+Tile Texture = Off
+Transform Texture = Off
+Transparency = 0.0
+X = 0.005 [m]
+Y = 0.0 [m]
+Z = -0.05 [m]
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.SendCommand(Command="""PLANE:YZplane
+Apply Instancing Transform = On
+Apply Texture = Off
+Blend Texture = On
+Bound Radius = 0.5 [m]
+Colour = 0.75, 0.75, 0.75
+Colour Map = Default Colour Map
+Colour Mode = Constant
+Colour Scale = Linear
+Colour Variable = Pressure
+Colour Variable Boundary Values = Conservative
+Culling Mode = No Culling
+Direction 1 Bound = 1.0 [m]
+Direction 1 Orientation = 0 [degree]
+Direction 1 Points = 10
+Direction 2 Bound = 1.0 [m]
+Direction 2 Points = 10
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = Off
+Draw Faces = On
+Draw Lines = Off
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Invert Plane Bound = Off
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Max = 0.0 [Pa]
+Min = 0.0 [Pa]
+Normal = 1 , 0 , 0 
+Number of Contours = 11
+Option = XY Plane
+Plane Bound = None
+Plane Type = Slice
+Point = 0 [m], 0 [m], 0 [m]
+Point 1 = 0 [m], 0 [m], 0 [m]
+Point 2 = 1 [m], 0 [m], 0 [m]
+Point 3 = 0 [m], 1 [m], 0 [m]
+Range = Global
+Render Edge Angle = 0 [degree]
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Texture Angle = 0
+Texture Direction = 0 , 1 , 0 
+Texture File =  
+Texture Material = Metal
+Texture Position = 0 , 0 
+Texture Scale = 1
+Texture Type = Predefined
+Tile Texture = Off
+Transform Texture = Off
+Transparency = 0.0
+X = 0.005 [m]
+Y = 0.0 [m]
+Z = -0.01 [m]
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.SendCommand(Command="""VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.025, 0.014, -0.007
+    Scale = 33.5524
+    Pan = 0, 0
+    Rotation Quaternion = 0.0629653, 0.276436, 0.0724498, 0.956232
+    
+  END
+
+END
+
+> update
+PLANE:YZplane
+Apply Instancing Transform = On
+Apply Texture = Off
+Blend Texture = On
+Bound Radius = 0.5 [m]
+Colour = 0.75, 0.75, 0.75
+Colour Map = Default Colour Map
+Colour Mode = Constant
+Colour Scale = Linear
+Colour Variable = Pressure
+Colour Variable Boundary Values = Conservative
+Culling Mode = No Culling
+Direction 1 Bound = 1.0 [m]
+Direction 1 Orientation = 0 [degree]
+Direction 1 Points = 10
+Direction 2 Bound = 1.0 [m]
+Direction 2 Points = 10
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = Off
+Draw Faces = On
+Draw Lines = Off
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Invert Plane Bound = Off
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Max = 0.0 [Pa]
+Min = 0.0 [Pa]
+Normal = 1 , 0 , 0 
+Number of Contours = 11
+Option = XY Plane
+Plane Bound = None
+Plane Type = Slice
+Point = 0 [m], 0 [m], 0 [m]
+Point 1 = 0 [m], 0 [m], 0 [m]
+Point 2 = 1 [m], 0 [m], 0 [m]
+Point 3 = 0 [m], 1 [m], 0 [m]
+Range = Global
+Render Edge Angle = 0 [degree]
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Texture Angle = 0
+Texture Direction = 0 , 1 , 0 
+Texture File =  
+Texture Material = Metal
+Texture Position = 0 , 0 
+Texture Scale = 1
+Texture Type = Predefined
+Tile Texture = Off
+Transform Texture = Off
+Transparency = 0.0
+X = 0.005 [m]
+Y = 0.0 [m]
+Z = -0.01 [m]
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.SendCommand(Command="> autolegend plot=/CONTOUR:YZplaneTemp, view=VIEW:View 1")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:enclosure
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:heatsink""")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:enclosure
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:heatsink""")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:enclosure
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:heatsink""")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:enclosure
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:heatsink""")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:outlet, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:chip
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:outlet, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:heatsink""")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:symmetry, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:chip
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:symmetry, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:heatsink""")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall enclosure, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:chip
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall enclosure, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:heatsink""")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall enclosure, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:chip
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall enclosure, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:heatsink""")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:inlet, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:chip
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:inlet, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:heatsink""")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:enclosure
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:heatsink""")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:symmetry, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:chip
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:symmetry, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:heatsink""")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:enclosure
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:heatsink""")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:enclosure
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:heatsink""")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:enclosure
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:heatsink""")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:enclosure
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:heatsink""")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:enclosure
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:heatsink""")
+results1.SendCommand(Command=""">highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:enclosure
+>highlight regionlist=/DATA READER/CASE:Case FFF/BOUNDARY:botton_wall chip, domainlist=/DATA READER/CASE:Case FFF/DOMAIN:heatsink""")
+results1.SendCommand(Command="""CONTOUR:YZplaneTemp
+Apply Instancing Transform = On
+Clip Contour = Off
+Colour Map = Default Colour Map
+Colour Scale = Linear
+Colour Variable = Temperature
+Colour Variable Boundary Values = Conservative
+Constant Contour Colour = Off
+Contour Range = Global
+Culling Mode = No Culling
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = On
+Font = Sans Serif
+Fringe Fill = On
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Location List = /PLANE:YZplane
+Max = 0.0 [K]
+Min = 0.0 [K]
+Number of Contours = 100
+Show Numbers = Off
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Text Colour = 0, 0, 0
+Text Colour Mode = Default
+Text Height = 0.024
+Transparency = 0.0
+Use Face Values = Off
+Value List = 0 [K],1 [K]
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.SendCommand(Command="""# Sending visibility action from ViewUtilities
+>show /CONTOUR:YZplaneTemp, view=/VIEW:View 1""")
+results1.SendCommand(Command="""CONTOUR:YZplaneTemp
+Apply Instancing Transform = On
+Clip Contour = Off
+Colour Map = Default Colour Map
+Colour Scale = Linear
+Colour Variable = Temperature
+Colour Variable Boundary Values = Conservative
+Constant Contour Colour = Off
+Contour Range = Global
+Culling Mode = No Culling
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = On
+Font = Sans Serif
+Fringe Fill = On
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Location List = /PLANE:YZplane
+Max = 0.0 [K]
+Min = 0.0 [K]
+Number of Contours = 100
+Show Numbers = Off
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Text Colour = 0, 0, 0
+Text Colour Mode = Default
+Text Height = 0.024
+Transparency = 0.0
+Use Face Values = Off
+Value List = 0 [K],1 [K]
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.SendCommand(Command="""CONTOUR:YZplaneTemp
+Apply Instancing Transform = On
+Clip Contour = Off
+Colour Map = Default Colour Map
+Colour Scale = Linear
+Colour Variable = Temperature
+Colour Variable Boundary Values = Conservative
+Constant Contour Colour = Off
+Contour Range = Global
+Culling Mode = No Culling
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = On
+Font = Sans Serif
+Fringe Fill = On
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Location List = /PLANE:YZplane
+Max = 0.0 [K]
+Min = 0.0 [K]
+Number of Contours = 100
+Show Numbers = Off
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Text Colour = 0, 0, 0
+Text Colour Mode = Default
+Text Height = 0.024
+Transparency = 0.0
+Use Face Values = Off
+Value List = 0 [K],1 [K]
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.SendCommand(Command="""CONTOUR:YZplaneTemp
+Apply Instancing Transform = On
+Clip Contour = Off
+Colour Map = Default Colour Map
+Colour Scale = Linear
+Colour Variable = Temperature
+Colour Variable Boundary Values = Conservative
+Constant Contour Colour = Off
+Contour Range = Global
+Culling Mode = No Culling
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = On
+Font = Sans Serif
+Fringe Fill = On
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Location List = /PLANE:YZplane
+Max = 0.0 [K]
+Min = 0.0 [K]
+Number of Contours = 100
+Show Numbers = Off
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Text Colour = 0, 0, 0
+Text Colour Mode = Default
+Text Height = 0.024
+Transparency = 0.0
+Use Face Values = Off
+Value List = 0 [K],1 [K]
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.SendCommand(Command="""CONTOUR:YZplaneTemp
+Apply Instancing Transform = On
+Clip Contour = Off
+Colour Map = Default Colour Map
+Colour Scale = Linear
+Colour Variable = Temperature
+Colour Variable Boundary Values = Conservative
+Constant Contour Colour = Off
+Contour Range = Global
+Culling Mode = No Culling
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = On
+Font = Sans Serif
+Fringe Fill = On
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Location List = /PLANE:YZplane
+Max = 0.0 [K]
+Min = 0.0 [K]
+Number of Contours = 100
+Show Numbers = Off
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Text Colour = 0, 0, 0
+Text Colour Mode = Default
+Text Height = 0.024
+Transparency = 0.0
+Use Face Values = Off
+Value List = 0 [K],1 [K]
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.Exit()
+Save(Overwrite=True)

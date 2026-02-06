@@ -1,0 +1,266 @@
+<FluentXMLReport>
+<version>
+Fluent
+Version: 3d, dp, pbns, lam (3d, double precision, pressure-based, laminar)
+Release: 23.2.0
+Title: 
+</version>
+
+<Models>
+
+Models
+------
+
+   Model                        Settings   
+   -------------------------------------
+   Space                        3D         
+   Time                         Steady     
+   Viscous                      Laminar    
+   Heat Transfer                Enabled    
+   Solidification and Melting   Disabled   
+   Radiation                    None       
+   Species                      Disabled   
+   Coupled Dispersed Phase      Disabled   
+   NOx Pollutants               Disabled   
+   SOx Pollutants               Disabled   
+   Soot                         Disabled   
+   Mercury Pollutants           Disabled   
+   Structure                    Disabled   
+   Acoustics                    Disabled   
+   Eulerian Wall Film           Disabled   
+   Potential/Electrochemistry   Disabled   
+   Multiphase                   Disabled   
+
+</Models>
+
+<MaterialProperties>
+Material Properties
+-------------------
+
+   Material: copper (solid)
+
+      Property               Units      Method     Value(s)   
+      -----------------------------------------------------
+      Density                kg/m^3     constant   8978       
+      Cp (Specific Heat)     J/(kg K)   constant   381        
+      Thermal Conductivity   W/(m K)    constant   387.6      
+
+   Material: air (fluid)
+
+      Property               Units      Method     Value(s)     
+      -------------------------------------------------------
+      Density                kg/m^3     constant   1.225        
+      Cp (Specific Heat)     J/(kg K)   constant   1006.43      
+      Thermal Conductivity   W/(m K)    constant   0.0242       
+      Viscosity              kg/(m s)   constant   1.7894e-05   
+      Molecular Weight       kg/kmol    constant   28.966       
+
+   Material: aluminum (solid)
+
+      Property               Units      Method     Value(s)   
+      -----------------------------------------------------
+      Density                kg/m^3     constant   2719       
+      Cp (Specific Heat)     J/(kg K)   constant   871        
+      Thermal Conductivity   W/(m K)    constant   202.4      
+
+</MaterialProperties>
+
+<CellZoneConditions>
+Cell Zone Conditions
+--------------------
+
+   Zones
+
+      name        id   type    
+      ----------------------
+      enclosure   9    fluid   
+      chip        10   solid   
+      heatsink    11   solid   
+
+   Setup Conditions
+
+      enclosure
+
+         Condition       Value   
+         ---------------------
+         Frame Motion?   no      
+
+      chip
+
+         Condition               Value                                                            
+         --------------------------------------------------------------------------------------
+         Specify source terms?   yes                                                              
+         Source Terms            ((energy ((constant . 10000000) (inactive . #f) (profile  ))))   
+         Frame Motion?           no                                                               
+
+      heatsink
+
+         Condition       Value      
+         ------------------------
+         Material Name   aluminum   
+         Frame Motion?   no         
+
+</CellZoneConditions>
+
+<BoundaryConditions>
+Boundary Conditions
+-------------------
+
+   Zones
+
+      name                             id   type             
+      ----------------------------------------------------
+      interior-chip-heatsink-shadow    18   wall             
+      interior-chip-heatsink           3    wall             
+      outlet                           13   outflow          
+      wall-enclosure-heatsink          1    wall             
+      wall-chip-enclosure              2    wall             
+      inlet                            12   velocity-inlet   
+      botton_wall-chip                 14   wall             
+      botton_wall-enclosure            15   wall             
+      symmetry                         16   symmetry         
+      wall-chip-enclosure-shadow       8    wall             
+      wall-enclosure-heatsink-shadow   17   wall             
+
+   Setup Conditions
+
+      interior-chip-heatsink-shadow
+
+         Condition         Value     
+         -------------------------
+         Thermal BC Type   Coupled   
+
+      interior-chip-heatsink
+
+         Condition         Value     
+         -------------------------
+         Thermal BC Type   Coupled   
+
+      outlet
+
+         Condition   Value   
+         -----------------
+
+      wall-enclosure-heatsink
+
+         Condition         Value      
+         --------------------------
+         Material Name     aluminum   
+         Thermal BC Type   Coupled    
+
+      wall-chip-enclosure
+
+         Condition         Value      
+         --------------------------
+         Material Name     aluminum   
+         Thermal BC Type   Coupled    
+
+      inlet
+
+         Condition                  Value   
+         --------------------------------
+         Velocity Magnitude [m/s]   1       
+         Temperature [K]            293     
+
+      botton_wall-chip
+
+         Condition         Value       
+         ---------------------------
+         Material Name     aluminum    
+         Thermal BC Type   Heat Flux   
+
+      botton_wall-enclosure
+
+         Condition                  Value             
+         ------------------------------------------
+         Material Name              aluminum          
+         Thermal BC Type            Heat Flux         
+         Wall Motion                Stationary Wall   
+         Shear Boundary Condition   No Slip           
+
+      symmetry
+
+         Condition   Value   
+         -----------------
+
+      wall-chip-enclosure-shadow
+
+         Condition                  Value             
+         ------------------------------------------
+         Material Name              aluminum          
+         Thermal BC Type            Coupled           
+         Wall Motion                Stationary Wall   
+         Shear Boundary Condition   No Slip           
+
+      wall-enclosure-heatsink-shadow
+
+         Condition                  Value             
+         ------------------------------------------
+         Material Name              aluminum          
+         Thermal BC Type            Coupled           
+         Wall Motion                Stationary Wall   
+         Shear Boundary Condition   No Slip           
+
+</BoundaryConditions>
+
+<SolverSettings>
+Solver Settings
+---------------
+
+   Equations
+
+      Equation   Solved   
+      -----------------
+      Flow       yes      
+      Energy     yes      
+
+   Numerics
+
+      Numeric                         Enabled   
+      ---------------------------------------
+      Absolute Velocity Formulation   yes       
+
+   Pseudo Time Explicit Relaxation Factors
+
+      Variable            Relaxation Factor   
+      -------------------------------------
+      Density             1                   
+      Body Forces         1                   
+      Energy              0.75                
+      Explicit Momentum   0.5                 
+      Explicit Pressure   0.5                 
+
+   Linear Solver
+
+      Variable   Solver Type   Termination Criterion   Residual Reduction Tolerance   
+      -----------------------------------------------------------------------------
+      Flow       F-Cycle       0.1                                                    
+      Energy     F-Cycle       0.1                                                    
+
+   Pressure-Velocity Coupling
+
+      Parameter                               Value     
+      -----------------------------------------------
+      Type                                    Coupled   
+      Pseudo Time Method (Global Time Step)   yes       
+
+   Discretization Scheme
+
+      Variable   Scheme                
+      ------------------------------
+      Pressure   Second Order          
+      Momentum   Second Order Upwind   
+      Energy     Second Order Upwind   
+
+   Solution Limits
+
+      Quantity                         Limit   
+      --------------------------------------
+      Minimum Absolute Pressure [Pa]   1       
+      Maximum Absolute Pressure [Pa]   5e+10   
+      Minimum Static Temperature [K]   1       
+      Maximum Static Temperature [K]   5000    
+
+</SolverSettings>
+
+</FluentXMLReport>

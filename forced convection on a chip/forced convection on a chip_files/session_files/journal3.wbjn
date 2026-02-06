@@ -1,0 +1,76 @@
+# encoding: utf-8
+# 2023 R2
+SetScriptVersion(Version="23.2.142")
+system1 = GetSystem(Name="FFF")
+results1 = system1.GetContainer(ComponentName="Results")
+results1.Edit()
+results1.SendCommand(Command="""VIEW:View 1
+  Light Angle = 50, 110
+END
+
+VIEW:View 2
+  Light Angle = 50, 110
+END
+
+VIEW:View 3
+  Light Angle = 50, 110
+END
+
+VIEW:View 4
+  Light Angle = 50, 110
+END
+
+> update
+CALCULATOR:CALCULATOR
+  Axis = 
+  Case Name = Case FFF
+  Expression = Pressure
+  Fluid = All Fluids
+  Function = volume
+  Location = chip
+END
+> calculate""")
+results1.SendCommand(Command="""CALCULATOR:CALCULATOR
+  Axis =  
+  Case Name = Case FFF
+  Expression = Pressure
+  Fluid = All Fluids
+  Function = volume
+  Location = chip
+END""")
+results1.SendCommand(Command="""CALCULATOR:CALCULATOR
+  Axis = 
+  Case Name = Case FFF
+  Expression = Temperature
+  Fluid = All Fluids
+  Function = volumeAve
+  Location = chip
+END
+> calculate""")
+results1.SendCommand(Command="""CALCULATOR:CALCULATOR
+  Axis =  
+  Case Name = Case FFF
+  Expression = Temperature
+  Fluid = All Fluids
+  Function = volumeAve
+  Location = chip
+END""")
+results1.SendCommand(Command="""CALCULATOR:CALCULATOR
+  Axis = 
+  Case Name = Case FFF
+  Expression = Temperature
+  Fluid = All Fluids
+  Function = maxVal
+  Location = chip
+END
+> calculate""")
+results1.SendCommand(Command="""CALCULATOR:CALCULATOR
+  Axis =  
+  Case Name = Case FFF
+  Expression = Temperature
+  Fluid = All Fluids
+  Function = maxVal
+  Location = chip
+END""")
+results1.Exit()
+Save(Overwrite=True)
